@@ -61,24 +61,24 @@
 							<tbody>
 								<?php 
 								$i = 1;
-								$position = $conn->query("SELECT name,department_id,department.name FROM position,department order by id asc");
-								while($row=$position->fetch_assoc()):
+								$position = mysqli_query($conn,"SELECT * FROM position join department on department.id=position.department_id order by position.id asc");
+								while($row=mysqli_fetch_array($position)){
 								?>
 								<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									
 									<td class="">
-										 <p> <b><?php echo $row['name'] ?></b></p>
+										 <p> <b><?php echo $row[2] ?></b></p>
 									</td>
 									<td class="text-center">
-										 <p> <b><?php echo $row['department_id'] ?></b></p>
+										 <p> <b><?php echo $row[4] ?></b></p>
 									</td>
 									<td class="text-center">
 										<button class="btn btn-sm btn-primary edit_position" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-department_id="<?php echo $row['department_id'] ?>"  >Edit</button>
 										<button class="btn btn-sm btn-danger delete_position" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
 									</td>
 								</tr>
-								<?php endwhile; ?>
+								<?php } ?>
 							</tbody>
 						</table>
 					</div>
