@@ -11,22 +11,15 @@ if(isset($_GET['id'])){
 <div class="container-fluid">
 	<form id='employee_frm'>
 		<div class="form-group">
-			<label>Firstname</label>
+			<label>Full Name</label>
 			<input type="hidden" name="id" value="<?php echo isset($id) ? $id : "" ?>" />
-			<input type="text" name="firstname" required="required" class="form-control" value="<?php echo isset($firstname) ? $firstname : "" ?>" />
+			<input type="text" autocomplete="off" name="firstname" required="required" class="form-control" value="<?php echo isset($firstname) ? $firstname : "" ?>" />
 		</div>
-		<div class="form-group">
-			<label>Middlename</label>
-			<input type="text" name ="middlename" placeholder="(optional)" class="form-control" value="<?php echo isset($middlename) ? $middlename : "" ?>" />
-		</div>
-		<div class="form-group">
-			<label>Lastname:</label>
-			<input type="text" name="lastname" required="required" class="form-control" value="<?php echo isset($lastname) ? $lastname : "" ?>" />
-		</div>
+		
 		<div class="form-group">
 			<label>Department</label>
 			<select class="custom-select browser-default select2" name="department_id">
-				<option value=""></option>
+				<option value="">Select Department</option>
 			<?php
 			$dept = $conn->query("SELECT * from department order by name asc");
 			while($row=$dept->fetch_assoc()):
@@ -35,10 +28,11 @@ if(isset($_GET['id'])){
 			<?php endwhile; ?>
 			</select>
 		</div>
+		
 		<div class="form-group">
 			<label>Position</label>
 			<select class="custom-select browser-default select2" name="position_id">
-				<option value=""></option>
+				<option value="">Select Position</option>
 			<?php
 			$pos = $conn->query("SELECT * from position order by name asc");
 			while($row=$pos->fetch_assoc()):
@@ -51,9 +45,33 @@ if(isset($_GET['id'])){
 			<label>Monthly Salary</label>
 			<input type="number" name="salary" required="required" class="form-control text-right" step="any" value="<?php echo isset($salary) ? $salary : "" ?>" />
 		</div>
+		<div class="form-group">
+			<label>Allowances</label>
+			<select class="custom-select browser-default select2" name="allowance_id">
+				<option value="">Select Allowance</option>
+			<?php
+			$allow = $conn->query("SELECT * from allowances order by allowance asc");
+			while($row=$allow->fetch_assoc()):
+			?>
+				<option value="<?php echo $row['id'] ?>" <?php echo isset($allowance_id) && $allowance_id == $row['id'] ? "selected" :"" ?>><?php echo $row['allowance'] ?></option>
+			<?php endwhile; ?>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Deductions</label>
+			<select class="custom-select browser-default select2"placeholder="Please select here" name="allowance_id">
+				<option value="">Select Deduction</option>
+			<?php
+			$allow = $conn->query("SELECT * from deductions order by deduction asc");
+			while($row=$allow->fetch_assoc()):
+			?>
+				<option value="<?php echo $row['id'] ?>" <?php echo isset($deduction_id) && $deduction_id == $row['id'] ? "selected" :"" ?>><?php echo $row['deduction'] ?></option>
+			<?php endwhile; ?>
+			</select>
+		</div>
 	</form>
 </div>
-<script>
+<!-- <script>
 	$('[name="department_id"]').change(function(){
 		var did = $(this).val()
 		$('[name="position_id"] .opt').each(function(){
@@ -89,4 +107,4 @@ if(isset($_GET['id'])){
 			})
 		})
 	})
-</script>
+</script> -->

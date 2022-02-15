@@ -10,24 +10,24 @@
 						<button class="btn btn-primary btn-sm btn-block col-md-3 float-right" type="button" id="new_payroll_btn"><span class="fa fa-plus"></span> Add Payroll</button>
 					</div>
 					<div class="card-body">
-						<table id="table" class="table table-bordered table-striped">
+						<table class="table">
 							<thead>
 								<tr>
-									<th>Ref No</th>
-									<th>Date From</th>
-									<th>Date To</th>
+									<th>S No</th>
+									<th>Employee</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
-									
+									$count =0;
 									$payroll=$conn->query("SELECT * FROM payroll order by date(date_from) desc") or die(mysqli_error());
 									while($row=$payroll->fetch_array()){
+										$count++;
 								?>
 								<tr>
-									<td><?php echo $row['ref_no']?></td>
+									<td><?php echo $count; ?></td>
 									<td><?php echo date("M d, Y",strtotime($row['date_from'])) ?></td>
 									<td><?php echo date("M d, Y",strtotime($row['date_to'])) ?></td>
 									<?php if($row['status'] == 0): ?>

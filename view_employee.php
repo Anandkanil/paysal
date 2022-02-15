@@ -10,7 +10,7 @@ $emp = $conn->query("SELECT e.*,d.name as dname,p.name as pname FROM employee e 
 <div class="contriner-fluid">
 	<div class="col-md-12">
 		<h5><b><small>Employee ID :</small><?php echo $employee_no ?></b></h5>
-		<h4><b><small>Name: </small><?php echo ucwords($lastname.", ".$firstname." ",$middlename) ?></b></h4>
+		<h4><b><small>Name: </small><?php echo ucwords($name) ?></b></h4>
 		<p><b>Department : <?php echo ucwords($dname) ?></b></p>
 		<p><b>Position : <?php echo ucwords($pname) ?></b></p>
 		<hr class="divider">
@@ -85,7 +85,7 @@ $emp = $conn->query("SELECT e.*,d.name as dname,p.name as pname FROM employee e 
 		font-weight: 700
 	}
 </style>
-<script>
+<!-- <script>
 	$('#new_allowance').click(function(){
 		uni_modal("New Allowace for <?php echo $employee_no.' - '.ucwords($lastname.", ".$firstname." ",$middlename) ?>",'manage_employee_allowances.php?id=<?php echo $_GET['id'] ?>','mid-large')
 	})
@@ -132,4 +132,4 @@ function remove_deduction(id){
 					}
 			})
 		}
-</script>
+</script> -->

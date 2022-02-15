@@ -6,17 +6,16 @@
 				<br />
 				<div class="card">
 					<div class="card-header">
-						<span><b>Employee List</b></span>
+						<span><b>Employee List <a href="index.php?page=users">User List</a></b></span>
 						<button class="btn btn-primary btn-sm btn-block col-md-3 float-right" type="button" id="new_emp_btn"><span class="fa fa-plus"></span> Add Employee</button>
 					</div>
 					<div class="card-body">
-						<table id="table" class="table table-bordered table-striped">
+						<table class="table" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th>Employee No</th>
 									<th>Firstname</th>
-									<th>Middlename</th>
-									<th>Lastname</th>
+									<th>Email</th>
 									<th>Department</th>
 									<th>Position</th>
 									<th>Action</th>
@@ -39,9 +38,8 @@
 								?>
 								<tr>
 									<td><?php echo $row['employee_no']?></td>
-									<td><?php echo $row['firstname']?></td>
-									<td><?php echo $row['middlename']?></td>
-									<td><?php echo $row['lastname']?></td>
+									<td><?php echo $row['name']?></td>
+									<td><?php echo $row['email']?></td>
 									<td><?php echo $d_arr[$row['department_id']]?></td>
 									<td><?php echo $p_arr[$row['position_id']]?></td>
 									<td>
@@ -62,7 +60,7 @@
 			</div>
 		</div>
 			
-		
+<!-- 		
 		
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -110,4 +108,4 @@
 					}
 			})
 		}
-	</script>
+	</script> -->
