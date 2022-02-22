@@ -9,11 +9,21 @@ if(isset($_GET['id'])){
 ?>
 
 <div class="container-fluid">
-	<form id='employee_frm'>
+	<form id='employee_frm' action="include.php" method="POST">
 		<div class="form-group">
 			<label>Full Name</label>
 			<input type="hidden" name="id" value="<?php echo isset($id) ? $id : "" ?>" />
-			<input type="text" autocomplete="off" name="firstname" required="required" class="form-control" value="<?php echo isset($firstname) ? $firstname : "" ?>" />
+			<input type="text" autocomplete="off" name="name" required="required" class="form-control" value="<?php echo isset($name) ? $name : "" ?>" />
+		</div>
+		<div class="form-group">
+			<label>Username</label>
+			<input type="hidden" name="username" />
+			<input type="text" autocomplete="off" name="username" required="required" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="hidden" name="password"  />
+			<input type="password"  name="password" required="required" class="form-control" />
 		</div>
 		
 		<div class="form-group">
@@ -59,7 +69,7 @@ if(isset($_GET['id'])){
 		</div>
 		<div class="form-group">
 			<label>Deductions</label>
-			<select class="custom-select browser-default select2"placeholder="Please select here" name="allowance_id">
+			<select class="custom-select browser-default select2"placeholder="Please select here" name="deduction_id">
 				<option value="">Select Deduction</option>
 			<?php
 			$allow = $conn->query("SELECT * from deductions order by deduction asc");
@@ -69,6 +79,8 @@ if(isset($_GET['id'])){
 			<?php endwhile; ?>
 			</select>
 		</div>
+		<button class="btn btn-primary"name="submit"> Save</button>
+		<input type="reset" value="Cancel"class="btn btn-secondary">
 	</form>
 </div>
 <!-- <script>

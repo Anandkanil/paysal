@@ -22,7 +22,7 @@ if(mysqli_num_rows($exe))
 }
 else
 {
-    header('Location:login.php?show=wrong userid/password');
+    header('Location:index.php?show=invalid username/password');
 }
 
 
