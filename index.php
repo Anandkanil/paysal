@@ -38,7 +38,8 @@
                     <span class="login100-form-title-1">
 						Sign In
 					</span>
-                </div> <center style="color: red;"><?php
+                </div> <center style="color: red;
+                margin-top:50px;"><?php
                         if(isset($_GET['show']))
                         {
                             $val=$_GET['show'];
