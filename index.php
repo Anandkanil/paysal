@@ -38,7 +38,13 @@
                     <span class="login100-form-title-1">
 						Sign In
 					</span>
-                </div>
+                </div> <center style="color: red;"><?php
+                        if(isset($_GET['show']))
+                        {
+                            $val=$_GET['show'];
+                            echo $val;
+                        }
+                        ?></center>
 
                 <form class="login100-form validate-form" action="index_action.php" method="post">
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
@@ -63,13 +69,7 @@
                              
                              </style>
                         <div class="contact100-form-checkbox">
-                            <?php
-                        if(isset($_GET['show']))
-                        {
-                            $val=$_GET['show'];
-                            echo $val;
-                        }
-                        ?>
+                           
 							</label>
                         </div>
 
