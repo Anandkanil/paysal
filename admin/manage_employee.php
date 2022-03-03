@@ -80,43 +80,6 @@ if(isset($_GET['id'])){
 			</select>
 		</div>
 		<button class="btn btn-primary"name="submit"> Save</button>
-		<input type="reset" value="Cancel"class="btn btn-secondary">
+		<input type="reset" value="Cancel"class="btn btn-secondary"data-dismiss="modal">
 	</form>
 </div>
-<!-- <script>
-	$('[name="department_id"]').change(function(){
-		var did = $(this).val()
-		$('[name="position_id"] .opt').each(function(){
-			if($(this).attr('data-did') == did){
-				$(this).attr('disabled',false)
-			}else{
-				$(this).attr('disabled',true)
-			}
-		})
-	})
-	$(document).ready(function(){
-		$('.select2').select2({
-			placeholder:"Please Select Here",
-			width:"100%"
-		})
-		$('#employee_frm').submit(function(e){
-				e.preventDefault()
-				start_load();
-			$.ajax({
-				url:'ajax.php?action=save_employee',
-				method:"POST",
-				data:$(this).serialize(),
-				error:err=>console.log(),
-				success:function(resp){
-						if(resp == 1){
-							alert_toast("Employee's data successfully saved","success");
-								setTimeout(function(){
-								location.reload();
-
-							},1000)
-						}
-				}
-			})
-		})
-	})
-</script> -->

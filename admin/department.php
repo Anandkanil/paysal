@@ -26,7 +26,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<button name="submit" class="btn btn-sm btn-primary col-sm-3 offset-md-3"> Save</button>
-								<button class="btn btn-sm btn-default col-sm-3" type="button" onclick="_reset()"> Cancel</button>
+								<button class="btn btn-sm btn-default col-sm-3"  type="reset"> Cancel</button>
 							</div>
 						</div>
 					</div>
@@ -98,77 +98,3 @@
 		max-height:150px;
 	}
 </style>
-<!-- <script>
-	function _reset(){
-		$('[name="id"]').val('');
-		$('#manage-department').get(0).reset();
-	}
-	
-	$('#manage-department').submit(function(e){
-		e.preventDefault()
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=save_department',
-			data: new FormData($(this)[0]),
-		    cache: false,
-		    contentType: false,
-		    processData: false,
-		    method: 'POST',
-		    type: 'POST',
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully added",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-				else if(resp==2){
-					alert_toast("Data successfully updated",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-			}
-		})
-	})
-	$('.edit_department').click(function(){
-		start_load()
-		var cat = $('#manage-department')
-		cat.get(0).reset()
-		cat.find("[name='id']").val($(this).attr('data-id'))
-		cat.find("[name='name']").val($(this).attr('data-name'))
-		end_load()
-	})
-	$('.delete_department').click(function(){
-		_conf("Are you sure to delete this department?","delete_department",[$(this).attr('data-id')])
-	})
-	function displayImg(input,_this) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-        	$('#cimg').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-	function delete_department($id){
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=delete_department',
-			method:'POST',
-			data:{id:$id},
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully deleted",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-			}
-		})
-	}
-</script> -->

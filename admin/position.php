@@ -6,7 +6,7 @@
 		<div class="row">
 			<!-- FORM Panel -->
 			<div class="col-md-4">
-			<form action="" id="manage-position">
+			<form action="" id="manage-position" method="POST">
 				<div class="card">
 					<div class="card-header">
 						  Position Form
@@ -27,7 +27,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">Name</label>
-								<textarea name="name" id="" cols="30" rows="2" class="form-control"></textarea>
+								<textarea name="pname" id="" cols="30" rows="2" class="form-control"></textarea>
 							</div>
 							
 					</div>
@@ -35,14 +35,25 @@
 					<div class="card-footer">
 						<div class="row">
 							<div class="col-md-12">
-								<button class="btn btn-sm btn-primary col-sm-3 offset-md-3"> Save</button>
-								<button class="btn btn-sm btn-default col-sm-3" type="button" onclick="_reset()"> Cancel</button>
+								<button class="btn btn-sm btn-primary col-sm-3 offset-md-3"name="submit" > Save</button>
+								<button class="btn btn-sm btn-default col-sm-3"  type="reset"> Cancel</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
 			</div>
+			<?php 
+			include 'db_connect.php';
+			if(isset($_POST['submit']))
+				{
+				$id=$_POST['id'];
+				$department_id=$_POST['department_id'];
+				$pname=$_POST['pname'];
+ 				$query="INSERT INTO `position`(`id`, `department_id`, `name`) VALUES ('$id','$department_id','$pname')";
+				$exe=mysqli_query($conn,$query);
+				}
+		?>
 			<!-- FORM Panel -->
 
 			<!-- Table Panel -->
@@ -75,7 +86,7 @@
 									</td>
 									<td class="text-center">
 										<button class="btn btn-sm btn-primary edit_position" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-department_id="<?php echo $row['department_id'] ?>"  >Edit</button>
-										<button class="btn btn-sm btn-danger delete_position" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+										<a href="delete_position.php?sid=<?php echo $row[0]; ?>"><button class="btn btn-sm btn-danger delete_deductions" type="button" data-id="<?php echo $row['id'] ?>">Delete</button></a>
 									</td>
 								</tr>
 								<?php } ?>
@@ -102,87 +113,3 @@
 		max-height:150px;
 	}
 </style>
-<!-- <script>
-	function _reset(){
-		$('[name="id"]').val('');
-		$('#manage-position').get(0).reset();
-		$('.select2').val('').select2({
-			placeholder:"Please Select Here",
-			width:"100%"
-		})
-	}
-	$('.select2').select2({
-		placeholder:"Please Select Here",
-		width:"100%"
-	})
-	$('#manage-position').submit(function(e){
-		e.preventDefault()
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=save_position',
-			data: new FormData($(this)[0]),
-		    cache: false,
-		    contentType: false,
-		    processData: false,
-		    method: 'POST',
-		    type: 'POST',
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully added",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-				else if(resp==2){
-					alert_toast("Data successfully updated",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-			}
-		})
-	})
-	$('.edit_position').click(function(){
-		start_load()
-		var cat = $('#manage-position')
-		cat.get(0).reset()
-		cat.find("[name='id']").val($(this).attr('data-id'))
-		cat.find("[name='name']").val($(this).attr('data-name'))
-		$('[name="department_id"]').val($(this).attr('data-department_id')).select2({
-			width:"100%"
-		})
-		end_load()
-	})
-	$('.delete_position').click(function(){
-		_conf("Are you sure to delete this position?","delete_position",[$(this).attr('data-id')])
-	})
-	function displayImg(input,_this) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-        	$('#cimg').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-	function delete_position($id){
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=delete_position',
-			method:'POST',
-			data:{id:$id},
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully deleted",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
-
-				}
-			}
-		})
-	}
-</script> -->
